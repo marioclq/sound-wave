@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulación de Ondas Sonoras</title>
+  <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
+  <link rel="stylesheet" type="text/css" href="assets/bootstrap/bootstrap.min.css">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+</head>
+<body>
+  <h1>Simulación de Ondas Sonoras y Efecto Doppler</h1>
+  <canvas id="soundCanvas" width="800" height="400"></canvas>
+  <div class="text-bg-danger">
+    XD
+  </div>
+  <div class="controls">
+    <label for="frequency">Frecuencia (Hz): </label>
+    <input type="range" id="frequency" min="1" max="1000" value="440">
+    <span id="frequencyValue">440</span> Hz
+    <label for="amplitude">Amplitud: </label>
+    <input type="range" id="amplitude" min="1" max="100" value="50">
+    <span id="amplitudeValue">50</span>
+    <label for="soundToggle">Sonido: </label>
+    <input type="checkbox" id="soundToggle">
+    <div>
+      <button id="playPause">Pausa</button>
+      <button id="reset">Reiniciar</button>
+      <button id="moveSource">Mover Emisor</button>
+    </div>
+  </div>
+  <div class="scale">
+    <div>0m</div>
+    <div>1m</div>
+    <div>2m</div>
+    <div>3m</div>
+    <div>4m</div>
+    <div>5m</div>
+  </div>
+  <script src="app.js"></script>
+  <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js'></script>
+  <script src='https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.3/dat.gui.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
+
+</body>
+</html>
