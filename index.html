@@ -1,51 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulación de Ondas Sonoras</title>
-  <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
-  <link rel="stylesheet" type="text/css" href="assets/bootstrap/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Ondas Sonoras</title>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles/main.css">
 
 </head>
 <body>
-  <h1>Simulación de Ondas Sonoras y Efecto Doppler</h1>
-  <canvas id="soundCanvas" width="800" height="400"></canvas>
-  <div class="text-bg-danger">
-    XD
-  </div>
-  <div class="controls">
-    <label for="frequency">Frecuencia (Hz): </label>
-    <input type="range" id="frequency" min="1" max="1000" value="440">
-    <span id="frequencyValue">440</span> Hz
-    <label for="amplitude">Amplitud: </label>
-    <input type="range" id="amplitude" min="1" max="100" value="50">
-    <span id="amplitudeValue">50</span>
-    <label for="soundToggle">Sonido: </label>
-    <input type="checkbox" id="soundToggle">
-    <div>
-      <button id="playPause">Pausa</button>
-      <button id="reset">Reiniciar</button>
-      <button id="moveSource">Mover Emisor</button>
+<div class="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-water"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Ultimate Wave</div>
+        </a>
+
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Addons
+        </div>
+
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span></a>
+        </li>
+
+
+    </ul>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <div
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    Simulación de Ondas Sonoras y Efecto Doppler
+                </div>
+            </nav>
+            <div class="container-fluid d-flex flex-column gap-3">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-xl-12">
+                        <div class="d-flex justify-content-center align-items-center align-content-center">
+                            <canvas id="soundCanvas" class="shadow" width="900" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <label for="soundToggle" class="form-label">Sonido: </label>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <input class="form-check-input" type="checkbox" id="soundToggle">
+
+                                            <div>
+                                                <button id="playPause" class="btn btn-primary">
+                                                    <i class="fas fa-pause"></i>
+
+                                                </button>
+                                                <button id="reset" class="btn btn-primary">
+                                                    <i class="fas fa-redo-alt"></i>
+                                                </button>
+                                                <button id="moveSource" class="btn btn-primary">Mover Emisor</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-volume-off fa-2x text-gray-300"></i>
+<!--                                        <i class="fas fa-volume-up fa-2x text-primary"></i>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <label for="frequency" class="form-label">Frecuencia (Hz): </label>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <input type="range" class="form-range" id="frequency" min="1" max="1000" value="440">
+                                            <span id="frequencyValue">440</span> Hz
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-wave-square fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <label for="amplitude" class="form-label">Amplitud: </label>
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <input type="range" class="form-range" id="amplitude" min="1" max="100" value="50">
+                                            <span id="amplitudeValue" class="d-none">50</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-stroopwafel fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="controls">
+
+<!--                    <label for="amplitude">Amplitud: </label>-->
+<!--                    <input type="range" id="amplitude" min="1" max="100" value="50">-->
+<!--                    <span id="amplitudeValue">50</span>-->
+
+<!--                    <div>-->
+<!--                        <button id="playPause">Pausa</button>-->
+<!--                        <button id="reset">Reiniciar</button>-->
+<!--                        <button id="moveSource">Mover Emisor</button>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="scale">
-    <div>0m</div>
-    <div>1m</div>
-    <div>2m</div>
-    <div>3m</div>
-    <div>4m</div>
-    <div>5m</div>
-  </div>
-  <script src="app.js"></script>
-  <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js'></script>
-  <script src='https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.3/dat.gui.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
+</div>
+
+<script src="app.js"></script>
+<script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
